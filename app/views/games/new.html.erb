@@ -1,0 +1,18 @@
+<div class="w-75 mx-auto p-5 bg-light">
+<h1>New game</h1>
+<div class="container">
+  <% @random_letters.shuffle.each do |letter|  %>
+  <p class="letter"><%= letter %></p>
+  <% end %>
+</div>
+<div>
+  <p>What is the longest word you can find?</p>
+  <form action="/score" method="post" data-turbo="false">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= hidden_field_tag :original_letters, @random_letters.join %>
+    <label for="word">Your answer:</label>
+    <input type="text" id="word" name="word">
+    <input class="btn btn-primary" type="submit" value="Play!">
+  </form>
+</div>
+</div>
